@@ -14,7 +14,7 @@ class UserProfileManager(BaseUserManager):
             raise ValueError('User must provide an email address')
         # Email first part is case sensitive and second part is insensitive
         email = self.normalize_email(email)
-        user = self. model(email=email, name=name) # Can't pass pwd for security
+        user = self.model(email=email, name=name) # Can't pass pwd for security
 
         user.set_password(password) # Encryption
         user.save(using=self._db) # Recommended although available by default
@@ -25,7 +25,7 @@ class UserProfileManager(BaseUserManager):
         """Create and save a new superuser with given details"""
         user = self.create_user(email, name, password)
 
-        user.is_super_user = True
+        user.is_superuser = True
         user.is_staff = True
         user.save(using=self._db)
 
